@@ -1,3 +1,5 @@
+var ID_CURSO_INC = 4;
+
 var cursos = [
     { _id: 1, curso: 'Engenharia de Produção', coordenador: 'fabio.teixeira@ifsp.edu.br' },
     { _id: 2, curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas', coordenador: 'fabiano.teixeira@ifsp.edu.br' },
@@ -25,5 +27,29 @@ module.exports = function() {
         });
         res.send(204).end();
     };
+
+    controller.salvaCurso = function(req, res) {
+        var curso = req.body;
+        curso = curso._id ? atualiza(curso) : adiciona(curso);
+        res.json(curso);
+    };
+
+    function adiciona(cursoNovo) {
+        cursoNovo._id = ++ID_CURSO_INC;;
+        cursos.push(cursoNovo);
+        return cursoNovo;
+    }
+
+    function atualiza(cursoAlterar) {
+        cursos = cursos.map(function(curso) {
+            if (curso._id == cursoAlterar._id) {
+                curso = cursoAlterar;
+            }
+            return curso;
+        });
+        
+        return cursoAlterar;
+    }
+
     return controller;
 };

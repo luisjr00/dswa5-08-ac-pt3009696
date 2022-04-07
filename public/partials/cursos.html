@@ -4,7 +4,8 @@
     <h2 class="text-center">Lista de cursos</h2>
 </div>
 
-<p ng-show = "mensagem.texto">{{mensagem.texto}}</p>
+<p ng-show="mensagem.texto">{{mensagem.texto}}</p>
+
 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 
@@ -25,9 +26,9 @@
 
 <br>
 
-<button class="btn btn-primary" ng-click='incrementa()'>Novo</button>
-
-<!--p> Cursos cadastrados: {{cursos.length}}</p-->
+<a ng-href='#/curso' class='btn btn-primary'>Novo Curso</a>
+<!--a ng-href='#/curso' class='btn btn-primary'>Novo Curso</a-->
+<!-- button class="btn btn-primary" ng-click='incrementa()'>Novo</button -->
 
 <p ng-show="cursos.length">Cursos cadastrados: {{cursos.length}}</p>
 <p class="text-info" ng-hide="cursos.length">Não há cursos cadastrados</p>
@@ -42,7 +43,7 @@
         <tr ng-repeat="curso in cursos | filter: filtro">
             <td><a ng-href='#/curso/{{curso._id}}'>{{curso.curso}}</a></td>
             <td>{{curso.coordenador}}</td>
-            <td class="text-center"><button ng-click='remove(curso)' class="btn btn-warning">Remover</buttom></td>
-</tr>
-</table>
+            <td class="text-center"><button ng-click='remove(curso)' class="btn btn-warning">Remover</button></td>
+        </tr>
+    </table>
 </div>

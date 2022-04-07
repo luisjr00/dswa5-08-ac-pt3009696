@@ -1,17 +1,19 @@
 angular.module('ifsp').controller('CursosController',
-    function($resource, $scope) {
+    function(Curso, $scope) {
         $scope.cursos = [];
         $scope.filtro = '';
-        var Curso = $resource('/cursos/:id');
+        $scope.mensagem = { texto: '' };
 
         function buscaCursos() {
             Curso.query(
                 function(cursos) {
                     $scope.cursos = cursos;
+                    $scope.mensagem = {};
                 },
                 function(erro) {
                     console.log("Não foi possível obter a lista de cursos");
                     console.log(erro);
+                    $scope.mensagem = { texto: "Não foi possível obter a lista de cursos" };
                 }
             );
         }
